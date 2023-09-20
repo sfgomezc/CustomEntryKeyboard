@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NextDoneButton.MainPage"
+             xmlns:local="clr-namespace:NextDoneButton.Classes">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Custom Entry Keyboard Button and Command Behavior" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <StackLayout Padding="24">
+            <Label Text="Change Entry Return Button by &quot;Search&quot; text on the keyboard."
+                   FontSize="16" />
+            <local:CustomKeyEntry Text="{Binding Search}"
+                           Placeholder="Search"
+                           ReturnType="Search" />
+            
+            <Label Text="" />
+            <Label Text="Change Entry Return Button by icon in keyboard and fire ViewModel event with &quot;Go&quot; button on the keyboard."
+                   FontSize="16" />
+            <local:CustomKeyEntry Text="{Binding UserName}"
+                           Placeholder="Username"
+                           ReturnType="Next" />
+            <local:CustomKeyEntry Text="{Binding Password}"
+                           Placeholder="Password"
+                           IsPassword="True"
+                           ReturnType="Go">
+                <local:CustomKeyEntry.Behaviors>
+                    <local:EventToCommandBehavior EventName="Completed" Command="{Binding loginCmd}" />
+                </local:CustomKeyEntry.Behaviors>
+            </local:CustomKeyEntry>
+
+            <!-- Este solo funciona para disparar el comando sin cambiar los botones -->
+            <!--<Entry Text="{Binding UserName}"
+                   Placeholder="Usuario" />
+            <Entry Text="{Binding Password}"
+                   Placeholder="Contraseña"
+                   IsPassword="True">
+                <Entry.Behaviors>
+                    <local:EventToCommandBehavior EventName="Completed" Command="{Binding loginCmd}" />
+                </Entry.Behaviors>
+            </Entry>-->
+            <Button Text="Login"
+                    HorizontalOptions="Center"
+                Command="{Binding loginCmd}" />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

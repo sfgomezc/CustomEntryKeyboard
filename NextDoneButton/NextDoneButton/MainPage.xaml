@@ -4,7 +4,7 @@
              x:Class="NextDoneButton.MainPage"
              xmlns:local="clr-namespace:NextDoneButton.Classes">
 
-    <StackLayout>
+    <StackLayout x:Name="Layout">
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <Label Text="Custom Entry Keyboard Button and Command Behavior" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
@@ -19,12 +19,15 @@
             <Label Text="Change Entry Return Button by icon in keyboard and fire ViewModel event with &quot;Go&quot; button on the keyboard."
                    FontSize="16" />
             <local:CustomKeyEntry Text="{Binding UserName}"
-                           Placeholder="Username"
-                           ReturnType="Next" />
+                                  Placeholder="Username"
+                                  ReturnType="Next"
+                                  Completed="Handle_Completed"
+                                  TabIndex="1" />
             <local:CustomKeyEntry Text="{Binding Password}"
-                           Placeholder="Password"
-                           IsPassword="True"
-                           ReturnType="Go">
+                                  Placeholder="Password"
+                                  IsPassword="True"
+                                  ReturnType="Go"
+                                  TabIndex="2">
                 <local:CustomKeyEntry.Behaviors>
                     <local:EventToCommandBehavior EventName="Completed" Command="{Binding loginCmd}" />
                 </local:CustomKeyEntry.Behaviors>
